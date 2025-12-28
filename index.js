@@ -113,7 +113,7 @@ bot.start(ctx => {
 })
 
 try {
-  spinner.start(chalk.cyan('Conectando con Telegram...'))
+  //spinner.start(chalk.cyan('Conectando con Telegram...'))
   await bot.launch()
   spinner.succeed(chalk.cyanBright('🚀 Shadow TG está en línea y listo.'))
 } catch (err) {
