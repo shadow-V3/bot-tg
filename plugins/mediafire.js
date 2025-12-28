@@ -1,4 +1,6 @@
 import axios from 'axios'
+import fs from 'fs'
+import path from 'path'
 
 const handler = async (ctx) => {
   try {
@@ -24,7 +26,10 @@ const handler = async (ctx) => {
 
     const { fileName, downloadUrl } = data.result
 
-    // Obtener tamaño (opcional)
+    // Crear tmp si no existe
+    if (!fs.existsSync('./tmp')) fs.mkdirSync('./tmp')
+
+    // Obtener tamaño
     let sizeStr = 'Desconocido'
     try {
       const head = await axios.head(downloadUrl)
@@ -33,27 +38,31 @@ const handler = async (ctx) => {
     } catch {}
 
     await ctx.reply(
-      `📁 *Archivo:* ${fileName}\n💾 *Tamaño:* ${sizeStr}\n⬇️ *Descargando...*`,
+      `📁 *Archivo:* ${fileName}\n` +
+      `💾 *Tamaño:* ${sizeStr}\n` +
+      `⬇️ *Descargando archivo...*`,
       { parse_mode: 'Markdown' }
     )
 
-    // Descargar en memoria
+    // Descargar a tmp
+    const filePath = path.join('./tmp', `${Date.now()}_${fileName}`)
     const res = await axios.get(downloadUrl, {
       responseType: 'arraybuffer',
       timeout: 0
     })
 
+    fs.writeFileSync(filePath, Buffer.from(res.data))
+
+    // Enviar a Telegram
     await ctx.replyWithDocument(
-      {
-        source: Buffer.from(res.data),
-        filename: fileName
-      },
+      { source: filePath, filename: fileName },
       {
         caption: `📦 *${fileName}*\n💾 ${sizeStr}`,
         parse_mode: 'Markdown'
       }
     )
 
+    fs.unlinkSync(filePath)
     await ctx.reply('✔️ *Archivo enviado correctamente.*', { parse_mode: 'Markdown' })
 
   } catch (e) {
