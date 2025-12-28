@@ -65,7 +65,7 @@ let handler = async (ctx) => {
     reply_to_message_id: ctx.message?.message_id
   }
 
-  const imagen = 'https://qu.ax/kKwHv.jpg'
+  const imagen = 'https://raw.githubusercontent.com/AkiraDevX/uploads/main/uploads/1766617406305_472904.jpeg'
 
   await ctx.replyWithPhoto(imagen, {
     caption: texto,
