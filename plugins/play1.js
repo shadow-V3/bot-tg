@@ -59,7 +59,7 @@ const handler = async (ctx) => {
 `
 
     // Miniatura
-    const thumbPath = `./temp/thumb_${Date.now()}.jpg`
+    const thumbPath = `./tmp/thumb_${Date.now()}.jpg`
     const thumbBuffer = await fetch(meta.thumbnail).then(r => r.arrayBuffer())
     fs.writeFileSync(thumbPath, Buffer.from(thumbBuffer))
 
@@ -67,7 +67,7 @@ const handler = async (ctx) => {
 
     // Descargar audio real
     const audioRes = await axios.get(downloadUrl, { responseType: 'arraybuffer' })
-    const audioPath = `./temp/${Date.now()}.mp3`
+    const audioPath = `./tmp/${Date.now()}.mp3`
     fs.writeFileSync(audioPath, Buffer.from(audioRes.data))
 
     await ctx.replyWithAudio({ source: audioPath }, {

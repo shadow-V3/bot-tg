@@ -16,8 +16,8 @@ let handler = async (ctx) => {
     await ctx.reply('🍃 *Mejorando la calidad de la imagen...* ✧')
 
     const fileLink = await ctx.telegram.getFileLink(photo.file_id)
-    const inputPath = `./temp/input_${Date.now()}.jpg`
-    const outputPath = `./temp/output_${Date.now()}.jpg`
+    const inputPath = `./tmp/input_${Date.now()}.jpg`
+    const outputPath = `./tmp/output_${Date.now()}.jpg`
 
     const res = await fetch(fileLink.href)
     const imgBuffer = Buffer.from(await res.arrayBuffer())

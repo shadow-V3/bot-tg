@@ -69,7 +69,7 @@ const handler = async (ctx) => {
 `
 
     // Miniatura
-    const thumbPath = `./temp/thumb_${Date.now()}.jpg`
+    const thumbPath = `./tmp/thumb_${Date.now()}.jpg`
     const thumbBuffer = await fetch(meta.thumbnail).then(r => r.arrayBuffer())
     fs.writeFileSync(thumbPath, Buffer.from(thumbBuffer))
 
@@ -77,7 +77,7 @@ const handler = async (ctx) => {
 
     // Descargar video real
     const videoRes = await axios.get(downloadUrl, { responseType: 'arraybuffer' })
-    const videoPath = `./temp/${Date.now()}.mp4`
+    const videoPath = `./tmp/${Date.now()}.mp4`
     fs.writeFileSync(videoPath, Buffer.from(videoRes.data))
 
     await ctx.replyWithVideo({ source: videoPath }, {
