@@ -53,11 +53,11 @@ let handler = async (ctx) => {
     reply_markup: {
       inline_keyboard: [
         [
-          { text: '🌐 GitHub', url: 'https://github.com/Shadow-nex' },
-          { text: '💬 Contacto', url: 'https://t.me/DvShadow_xyz' }
+          { text: '🌐 GitHub', url: 'https://github.com/shadox-xyz' },
+          { text: '💬 Contacto', url: 'https://wa.me/51919199630' }
         ],
         [
-          { text: '🪄 Canal Oficial', url: 'https://t.me/ShadowTG_Updates' }
+          { text: '🪄 Canal Oficial', url: 'https://whatsapp.com/channel/0029VbC34Nt42DchIWA0q11f' }
         ]
       ]
     },
