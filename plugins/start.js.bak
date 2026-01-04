@@ -11,7 +11,7 @@ let handler = async (ctx) => {
     const unpush = global.unpush || '🚀'
 
     const imageUrl =
-      'https://raw.githubusercontent.com/AkiraDevX/uploads/main/uploads/1766617406305_472904.jpeg' // cambia si quieres
+      'https://raw.githubusercontent.com/AkiraDevX/uploads/main/uploads/bot-start.jpg' // cambia si quieres
 
     const caption = `
 👋 *Hola ${username}*
