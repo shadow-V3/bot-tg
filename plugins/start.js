@@ -28,8 +28,8 @@ Soy *${botname}* ${unpush}
       reply_markup: {
         inline_keyboard: [
           [
-            { text: '📋 Menú', callback_data: 'menu' },
-            { text: '⬇️ Menú Descargas', callback_data: 'menu_descargas' }
+            { text: '📋 Menú', callback_data: '/menu' },
+            { text: '⬇️ Menú Descargas', callback_data: '/owner' }
           ],
           [
             {
